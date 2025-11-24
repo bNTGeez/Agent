@@ -1,20 +1,24 @@
 # Google Agent Development Kit with A2A support
 # This package includes all dependencies needed for A2A communication
 google-adk[a2a]
+google-genai
 
-# Uvicorn is used to run the A2A services
-# It's typically included with google-adk[a2a], but listed here for clarity
-uvicorn
+# FastAPI + server runtime
+fastapi
+uvicorn[standard]
 
-# Python-dotenv for loading environment variables from .env file
+# Payment + HTTP clients
+stripe
+httpx
+
+# Database + env tools
+psycopg2-binary
 python-dotenv
+
+# Retry logic
+tenacity
 
 # Pin aiohttp to compatible version
 # google-adk requires ClientConnectorDNSError which was removed in aiohttp 3.9+
 # We use aiohttp_compat.py to add it back as an alias
 aiohttp==3.9.5
-
-# tenacity for retry logic
-tenacity
-
-

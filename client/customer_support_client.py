@@ -36,31 +36,31 @@ def create_remote_agents():
     Returns:
         Tuple of (remote_product_catalog_agent, remote_inventory_agent, remote_shipping_agent, remote_payment_agent)
     """
-    # Product Catalog Agent on port 8001
+    # Product Catalog Agent
     remote_product_catalog_agent = RemoteA2aAgent(
         name="product_catalog_agent",
         description="Remote product catalog agent from external vendor that provides product information.",
-        agent_card=f"http://localhost:8001{AGENT_CARD_WELL_KNOWN_PATH}",
+        agent_card=f"https://web-production-b8d5.up.railway.app{AGENT_CARD_WELL_KNOWN_PATH}",
     )
 
-    # Inventory Agent on port 8002
+    # Inventory Agent
     remote_inventory_agent = RemoteA2aAgent(
         name="inventory_agent",
         description="Remote inventory agent from external vendor that provides stock levels and restocking schedules.",
-        agent_card=f"http://localhost:8002{AGENT_CARD_WELL_KNOWN_PATH}",
+        agent_card=f"https://web-production-b8d5.up.railway.app{AGENT_CARD_WELL_KNOWN_PATH}",
     )
 
-    # Shipping Agent on port 8003
+    # Shipping Agent
     remote_shipping_agent = RemoteA2aAgent(
         name="shipping_agent",
         description="Remote shipping agent from external vendor that provides delivery estimates and package tracking information.",
-        agent_card=f"http://localhost:8003{AGENT_CARD_WELL_KNOWN_PATH}",
+        agent_card=f"https://web-production-b8d5.up.railway.app{AGENT_CARD_WELL_KNOWN_PATH}",
     )
 
     remote_payment_agent = RemoteA2aAgent(
         name="payment_agent",
         description="Remote payment microservice that handles Stripe payments.",
-        agent_card=f"http://localhost:8004{AGENT_CARD_WELL_KNOWN_PATH}",
+        agent_card=f"https://web-production-b8d5.up.railway.app{AGENT_CARD_WELL_KNOWN_PATH}",
     )
 
     return remote_product_catalog_agent, remote_inventory_agent, remote_shipping_agent, remote_payment_agent
@@ -124,11 +124,11 @@ async def test_a2a_communication(customer_support_agent, user_query: str):
 async def main():
     """Main function to run the test harness."""
     print("🧪 Testing A2A Communication...\n")
-    print("⚠️  Make sure all four A2A services are running:")
-    print("   - Product Catalog Agent on port 8001")
-    print("   - Inventory Agent on port 8002")
-    print("   - Shipping Agent on port 8003")
-    print("   - Payment Agent on port 8004\n")
+    print("⚠️  Make sure all four A2A services are running on Railway:")
+    print("   - Product Catalog Agent: https://web-production-b8d5.up.railway.app")
+    print("   - Inventory Agent: https://web-production-b8d5.up.railway.app")
+    print("   - Shipping Agent: https://web-production-b8d5.up.railway.app")
+    print("   - Payment Agent: https://web-production-b8d5.up.railway.app\n")
 
     # Create remote agent proxies
     (
